@@ -1,9 +1,17 @@
 package br.com.zup.edu.nossozenity.zupper;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Habilidade {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,10 +35,10 @@ public class Habilidade {
      * @deprecated construtor de uso exclusivo para o hibernate
      */
     @Deprecated
-    public Habilidade() {
-    }
+    public Habilidade() {}
 
     public Long getId() {
         return id;
     }
+
 }

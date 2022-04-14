@@ -1,10 +1,19 @@
 package br.com.zup.edu.nossozenity.zupper;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Kudo {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -13,7 +22,7 @@ public class Kudo {
     private TipoKudo nome;
 
     @Column(nullable = false)
-    private LocalDateTime criadoEm= LocalDateTime.now();
+    private LocalDateTime criadoEm = LocalDateTime.now();
 
     @ManyToOne(optional = false)
     private Zupper recebido;
@@ -31,10 +40,10 @@ public class Kudo {
      * @deprecated construtor de uso exclusivo para o hibernate
      */
     @Deprecated
-    public Kudo() {
-    }
+    public Kudo() {}
 
     public Long getId() {
         return id;
     }
+
 }
