@@ -56,4 +56,12 @@ public class Zupper {
         return id;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+
 }
