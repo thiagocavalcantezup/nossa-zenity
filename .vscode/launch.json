@@ -1,0 +1,15 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-NossoZenityApplication<nosso-zenity>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "br.com.zup.edu.nossozenity.NossoZenityApplication",
+      "projectName": "nosso-zenity",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
