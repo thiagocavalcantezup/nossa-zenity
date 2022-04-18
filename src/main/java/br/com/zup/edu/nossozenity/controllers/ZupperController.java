@@ -1,7 +1,14 @@
 package br.com.zup.edu.nossozenity.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,8 +20,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import br.com.zup.edu.nossozenity.repositories.HabilidadeRepository;
 import br.com.zup.edu.nossozenity.repositories.ZupperRepository;
+import br.com.zup.edu.nossozenity.zupper.Habilidade;
 import br.com.zup.edu.nossozenity.zupper.Zupper;
+import br.com.zup.edu.nossozenity.zupper.ZupperHabilidadeResponseDTO;
 import br.com.zup.edu.nossozenity.zupper.ZupperPatchDTO;
 import br.com.zup.edu.nossozenity.zupper.ZupperResponseDTO;
 
@@ -25,9 +35,12 @@ public class ZupperController {
     public final static String BASE_URI = "/zuppers";
 
     private final ZupperRepository zupperRepository;
+    private final HabilidadeRepository habilidadeRepository;
 
-    public ZupperController(ZupperRepository zupperRepository) {
+    public ZupperController(ZupperRepository zupperRepository,
+                            HabilidadeRepository habilidadeRepository) {
         this.zupperRepository = zupperRepository;
+        this.habilidadeRepository = habilidadeRepository;
     }
 
     @Transactional
@@ -60,6 +73,22 @@ public class ZupperController {
                                         );
 
         return ResponseEntity.ok(new ZupperResponseDTO(zupper));
+    }
+
+    @GetMapping("/{id}" + HabilidadeController.BASE_URI)
+    public ResponseEntity<?> habilidadeIndex(@PathVariable Long id,
+                                             @PageableDefault(size = 2, page = 0, sort = "id", direction = Direction.ASC) Pageable paginacao) {
+        Page<Habilidade> habilidadesPage = habilidadeRepository.findAllByDonoHabilidadeId(
+            id, paginacao
+        );
+        List<ZupperHabilidadeResponseDTO> habilidadeResponses = habilidadesPage.map(
+            ZupperHabilidadeResponseDTO::new
+        ).toList();
+        PageImpl<ZupperHabilidadeResponseDTO> habilidadesPageImpl = new PageImpl<>(
+            habilidadeResponses, paginacao, habilidadesPage.getTotalElements()
+        );
+
+        return ResponseEntity.ok(habilidadesPageImpl);
     }
 
 }
