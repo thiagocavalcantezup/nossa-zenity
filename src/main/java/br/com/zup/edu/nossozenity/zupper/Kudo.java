@@ -30,10 +30,9 @@ public class Kudo {
     @ManyToOne(optional = false)
     private Zupper enviado;
 
-    public Kudo(TipoKudo nome, LocalDateTime criadoEm, Zupper recebido) {
+    public Kudo(TipoKudo nome, LocalDateTime criadoEm) {
         this.nome = nome;
         this.criadoEm = criadoEm;
-        this.recebido = recebido;
     }
 
     /**
@@ -56,6 +55,14 @@ public class Kudo {
 
     public Zupper getEnviado() {
         return enviado;
+    }
+
+    public void setRecebido(Zupper recebido) {
+        this.recebido = recebido;
+    }
+
+    public void setEnviado(Zupper enviado) {
+        this.enviado = enviado;
     }
 
 }

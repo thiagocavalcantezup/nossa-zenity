@@ -25,10 +25,9 @@ public class Habilidade {
     @ManyToOne(optional = false)
     private Zupper donoHabilidade;
 
-    public Habilidade(String nome, NivelHabilidade nivel, Zupper donoHabilidade) {
+    public Habilidade(String nome, NivelHabilidade nivel) {
         this.nome = nome;
         this.nivel = nivel;
-        this.donoHabilidade = donoHabilidade;
     }
 
     /**
@@ -47,6 +46,10 @@ public class Habilidade {
 
     public NivelHabilidade getNivel() {
         return nivel;
+    }
+
+    public void setDonoHabilidade(Zupper donoHabilidade) {
+        this.donoHabilidade = donoHabilidade;
     }
 
 }

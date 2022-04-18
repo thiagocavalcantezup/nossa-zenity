@@ -31,12 +31,10 @@ public class Certificado {
     @Enumerated(EnumType.STRING)
     private TipoCertificado tipo;
 
-    public Certificado(String nome, String instituicaoEmissora, String link, Zupper zupper,
-                       TipoCertificado tipo) {
+    public Certificado(String nome, String instituicaoEmissora, String link, TipoCertificado tipo) {
         this.nome = nome;
         this.instituicaoEmissora = instituicaoEmissora;
         this.link = link;
-        this.dono = zupper;
         this.tipo = tipo;
     }
 
@@ -64,6 +62,10 @@ public class Certificado {
 
     public TipoCertificado getTipo() {
         return tipo;
+    }
+
+    public void setDono(Zupper dono) {
+        this.dono = dono;
     }
 
 }
