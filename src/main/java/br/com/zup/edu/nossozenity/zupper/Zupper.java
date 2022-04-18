@@ -1,6 +1,7 @@
 package br.com.zup.edu.nossozenity.zupper;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,6 +63,36 @@ public class Zupper {
 
     public void setCargo(String cargo) {
         this.cargo = cargo;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public String getTempoDeCasa() {
+        Long anos = ChronoUnit.YEARS.between(dataAdmissao, LocalDate.now());
+        Long meses = ChronoUnit.MONTHS.between(dataAdmissao.plusYears(anos), LocalDate.now());
+        Long dias = ChronoUnit.DAYS.between(
+            dataAdmissao.plusYears(anos).plusMonths(meses), LocalDate.now()
+        );
+
+        return "Anos: " + anos + ", Meses: " + meses + ", Dias: " + dias;
+    }
+
+    public List<Certificado> getCertificados() {
+        return certificados;
+    }
+
+    public List<Kudo> getKudosRecebidos() {
+        return kudosRecebidos;
+    }
+
+    public List<Habilidade> getHabilidades() {
+        return habilidades;
     }
 
 }

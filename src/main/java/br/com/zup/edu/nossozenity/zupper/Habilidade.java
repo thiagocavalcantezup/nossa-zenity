@@ -41,4 +41,12 @@ public class Habilidade {
         return id;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public NivelHabilidade getNivel() {
+        return nivel;
+    }
+
 }

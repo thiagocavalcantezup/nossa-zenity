@@ -46,4 +46,16 @@ public class Kudo {
         return id;
     }
 
+    public TipoKudo getNome() {
+        return nome;
+    }
+
+    public LocalDateTime getCriadoEm() {
+        return criadoEm;
+    }
+
+    public Zupper getEnviado() {
+        return enviado;
+    }
+
 }

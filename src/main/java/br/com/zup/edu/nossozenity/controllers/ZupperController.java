@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 import br.com.zup.edu.nossozenity.repositories.ZupperRepository;
 import br.com.zup.edu.nossozenity.zupper.Zupper;
 import br.com.zup.edu.nossozenity.zupper.ZupperPatchDTO;
+import br.com.zup.edu.nossozenity.zupper.ZupperResponseDTO;
 
 @RestController
 @RequestMapping(ZupperController.BASE_URI)
@@ -45,6 +47,19 @@ public class ZupperController {
         zupperRepository.save(zupper);
 
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ZupperResponseDTO> show(@PathVariable Long id) {
+        Zupper zupper = zupperRepository.findById(id)
+                                        .orElseThrow(
+                                            () -> new ResponseStatusException(
+                                                HttpStatus.NOT_FOUND,
+                                                "Não existe um zupper com o id informado."
+                                            )
+                                        );
+
+        return ResponseEntity.ok(new ZupperResponseDTO(zupper));
     }
 
 }
