@@ -78,6 +78,12 @@ public class ZupperController {
     @GetMapping("/{id}" + HabilidadeController.BASE_URI)
     public ResponseEntity<?> habilidadeIndex(@PathVariable Long id,
                                              @PageableDefault(size = 2, page = 0, sort = "id", direction = Direction.ASC) Pageable paginacao) {
+        if (!zupperRepository.existsById(id)) {
+            throw new ResponseStatusException(
+                HttpStatus.NOT_FOUND, "Não existe um zupper com o id informado."
+            );
+        }
+
         Page<Habilidade> habilidadesPage = habilidadeRepository.findAllByDonoHabilidadeId(
             id, paginacao
         );
