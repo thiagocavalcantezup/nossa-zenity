@@ -37,4 +37,12 @@ public class Kudo {
     public Long getId() {
         return id;
     }
+
+    public TipoKudo getNome() {
+        return nome;
+    }
+
+    public Zupper getEnviado() {
+        return enviado;
+    }
 }
