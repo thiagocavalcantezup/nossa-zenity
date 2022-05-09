@@ -21,9 +21,9 @@ public class Kudo {
     @ManyToOne(optional = false)
     private Zupper enviado;
 
-    public Kudo(TipoKudo nome, LocalDateTime criadoEm, Zupper recebido) {
+    public Kudo(TipoKudo nome, Zupper enviadoPor, Zupper recebido) {
         this.nome = nome;
-        this.criadoEm = criadoEm;
+        this.enviado = enviadoPor;
         this.recebido = recebido;
     }
 
