@@ -1,4 +1,4 @@
-# Nosso Spotify
+# Nosso Zenity
 
 O objetivo deste projeto é que as atividades do `Treinamento de Testes de Integração com Spring Boot e Spring Test` 
 
